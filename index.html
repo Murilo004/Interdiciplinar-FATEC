@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Login - MKMG</title>
+</head>
+<body>
+
+<div class="container" style="max-width:400px;">
+  <h2 style="text-align:center;">Bem-vindo</h2>
+
+  <label>Email</label>
+  <input type="email" placeholder="Insira seu email">
+
+  <label>Senha</label>
+  <input type="password" placeholder="Insira sua senha">
+
+  <a href="#" onclick="showToast('Estamos enviando o código de renovação de senha no seu e-mail')">Esqueci minha senha</a>
+
+  <a href = "page3.html"><button class="btn-primary" style="width:100%;">Entrar</button></a>
+
+  <p style="text-align:center; margin-top:15px;">
+    Não tem uma conta? <a href="page2.html">Cadastre-se</a>
+  </p>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

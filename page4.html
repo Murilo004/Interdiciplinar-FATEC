@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Pedidos - MKMG</title>
+</head>
+
+<body>
+
+<header>
+  <strong>Sistema MKMG</strong>
+  <nav>
+    <a href="page4.html">Pedidos</a>
+    <a href="page3.html">Serviços</a>
+    <a href="page5.html">Carrinho</a>
+  </nav>
+  <div class="avatar"></div>
+</header>
+
+<div class="container">
+
+  <h2>Status dos Pedidos</h2>
+  <p>Acompanhe o progresso dos seus pedidos</p>
+
+  <input type="text" id="searchInput" class="searchbar" placeholder="Buscar por número do pedido ou nome" onkeyup="filtrarTabela()">
+
+ <div class="tabs">
+  <div id="tab-todos" class="tab active" onclick="switchTab('todos')">Todos</div>
+  <div id="tab-progresso" class="tab" onclick="switchTab('progresso')">Em Produção</div>
+  <div id="tab-concluidos" class="tab" onclick="switchTab('concluidos')">Concluídos</div>
+  <div id="tab-enviados" class="tab" onclick="switchTab('enviados')">Enviados</div>
+</div>
+
+<table id="lista-todos" class="pedido-lista">
+  <tr><th>Pedido ID</th><th>Data</th><th>Cliente</th><th>Status</th><th>Serviços</th></tr>
+
+  <tr><td>#12345</td><td>2024-07-26</td><td>Dra. Ana Silva</td>
+      <td><span class="status-badge">Em Produção</span></td><td>Coroa, Ponte</td></tr>
+
+  <tr><td>#12344</td><td>2024-07-25</td><td>Dr. João Pereira</td>
+      <td><span class="status-badge">Concluído</span></td><td>Facetas</td></tr>
+
+  <tr><td>#12343</td><td>2024-07-24</td><td>Dra. Maria Santos</td>
+      <td><span class="status-badge">Enviado</span></td><td>Implante</td></tr>
+
+  <tr><td>#12342</td><td>2024-07-23</td><td>Dr. Carlos Oliveira</td>
+      <td><span class="status-badge">Em Produção</span></td><td>Prótese</td></tr>
+
+  <tr><td>#12341</td><td>2024-07-22</td><td>Dra. Sofia Costa</td>
+      <td><span class="status-badge">Concluído</span></td><td>Ortodontia</td></tr>
+  <tr><td>#12340</td><td>2024-07-21</td><td>Dra. Ana Silva</td>
+    <td><span class="status-badge">Enviado</span></td><td>Casquete Sob Implante</td></tr>
+</table>
+
+<!-- Tabelas geradas automaticamente (vazias no HTML) -->
+<table id="lista-progresso" class="pedido-lista" style="display:none;"></table>
+<table id="lista-concluidos" class="pedido-lista" style="display:none;"></table>
+<table id="lista-enviados" class="pedido-lista" style="display:none;"></table>
+
+</div>
+<script src="script.js"></script>
+<div id="toast" class="toast"></div>
+</body>
+</html>
