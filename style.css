@@ -1,4 +1,3 @@
-/* ======== ESTILOS GERAIS ======== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -36,7 +35,6 @@ nav a {
   margin-bottom: 20px;
 }
 
-/* Inputs */
 input, select {
   width: 100%;
   padding: 12px;
@@ -46,7 +44,6 @@ input, select {
   margin-bottom: 18px;
 }
 
-/* Botões */
 button {
   padding: 12px 20px;
   border-radius: 25px;
@@ -56,7 +53,6 @@ button {
   margin-top: 10px;
 }
 
-/* ===== Aviso ===== */
 .toast {
   position: fixed;
   top: -80px;
@@ -81,7 +77,6 @@ button {
 .btn-danger { background: #d9534f; color: white; }
 .btn-finish { background: #4a7dcf; color: white; }
 
-/* ======== TABELAS ======== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -104,7 +99,6 @@ table th, table td {
   display: inline-block;
 }
 
-/* Menu superior avatar */
 .avatar {
   width: 38px;
   height: 38px;
@@ -112,7 +106,6 @@ table th, table td {
   background: #ccc;
 }
 
-/* Container fixo para as tabelas */
 .pedido-lista {
     width: 100%;
     border-collapse: collapse;
@@ -120,7 +113,6 @@ table th, table td {
     min-width: 800px;    
 }
 
-/* Todas as tabelas começam invisíveis pelo JS */
 .pedido-lista th,
 .pedido-lista td {
     padding: 12px;
@@ -128,7 +120,6 @@ table th, table td {
     border-bottom: 1px solid #ddd;
 }
 
-/* 🔥 Fixando larguras das colunas */
 .pedido-lista th:nth-child(1),
 .pedido-lista td:nth-child(1) { width: 120px; }
 
@@ -144,7 +135,6 @@ table th, table td {
 .pedido-lista th:nth-child(5),
 .pedido-lista td:nth-child(5) { width: 260px; }
 
-/* Estilo das abas (para não mexer no layout ao trocar) */
 .tabs {
     display: flex;
     gap: 20px;
@@ -172,7 +162,6 @@ table th, table td {
   border: 1px solid #ddd;
 }
 
-/* Fundo escuro */
 .modal {
     display: none;
     position: fixed;
@@ -186,7 +175,6 @@ table th, table td {
     animation: fadeIn 0.3s ease forwards;
 }
 
-/* Caixa central */
 .modal-content {
     background: white;
     padding: 25px;
@@ -196,7 +184,6 @@ table th, table td {
     animation: slideDown 0.3s ease forwards;
 }
 
-/* Botões */
 .modal-buttons {
     margin-top: 20px;
     display: flex;
@@ -211,7 +198,6 @@ table th, table td {
     font-weight: bold;
 }
 
-/* Animações */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -220,4 +206,5 @@ table th, table td {
 @keyframes slideDown {
     from { transform: translateY(-30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+
 }
