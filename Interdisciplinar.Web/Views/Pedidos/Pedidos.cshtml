@@ -1,0 +1,68 @@
+@model List<Pedido>
+@{
+  ViewData["Title"] = "Pedidos - MKMG";
+  var tipo = Context.Session.GetString("TipoUsuario");
+}
+
+<div class="container py-4">
+  <h2 class="text-center">Status dos Pedidos</h2>
+  <p class="text-center">Acompanhe o progresso dos seus pedidos</p>
+
+  <input type="text" id="searchInput" class="form-control rounded-pill mb-4" placeholder="Buscar por número do pedido ou nome" onkeyup="filtrarTabela()">
+
+  <div class="tabs">
+    <div id="tab-todos" class="tab active" onclick="switchTab('todos')">Todos</div>
+    <div id="tab-pendentes" class="tab" onclick="switchTab('pendentes')">Pendentes</div>
+    <div id="tab-progresso" class="tab" onclick="switchTab('progresso')">Em Produção</div>
+    <div id="tab-concluidos" class="tab" onclick="switchTab('concluidos')">Concluídos</div>
+  </div>
+
+  <table id="lista-pedidos" class="table table-hover pedido-lista">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Cliente</th>
+        <th>Status</th>
+        <th>Serviços</th>
+        <th style="text-align: center">Quantidade</th>
+        <th>Total</th>
+        @if (tipo == "Protético") 
+        {
+          <th style="text-align: center">Ação</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var pedido in Model)
+      {
+        <tr data-status="@pedido.Status">
+          <td>@pedido.Data</td>
+          <td>@pedido.Dentista</td>
+          <td>@pedido.Status</td>
+          <td>
+            <div>
+              @foreach (var item in pedido.Itens)
+              {
+                <div>
+                  @item.Servico.Nome - @item.Quantidade
+                </div>
+              }
+            </div>
+          </td>
+          <td style="text-align: center;">@pedido.Itens.Sum(i => i.Quantidade)</td>
+          <td>R$ @pedido.Total.ToString("F2")</td>
+          @if (tipo == "Protético") 
+          {
+            <td style="text-align: center;">
+              <a asp-controller="Pedidos" asp-action="Update" asp-route-id="@pedido.Id" class="btn btn-outline-secondary rounded-pill">Editar</a>
+              <form asp-controller="Pedidos" asp-action="Delete" method="post" style="display:inline;">
+                <input type="hidden" name="id" value="@pedido.Id" />
+                <button type="submit" class="btn btn-danger rounded-pill">Remover</button>
+              </form>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

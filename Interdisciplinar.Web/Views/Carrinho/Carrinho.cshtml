@@ -1,0 +1,60 @@
+@model List<Servicos>
+@{
+  ViewData["Title"] = "Carrinho - MKMG";
+}
+
+<div class="container py-4">
+  <h2 class="text-center mb-4">Carrinho de Compras</h2>
+
+  <table class="table table-hover" id="carrinho">
+    <thead>
+      <tr>
+          <th>Serviço</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Subtotal</th>
+          <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var grupo in Model.GroupBy(x => x.Id))
+      {
+        <tr>
+          <td>@grupo.First().Nome</td>
+          <td>@grupo.First().Preco</td>
+          <td>@grupo.Count()</td>
+          <td>@(grupo.First().Preco * @grupo.Count())</td>
+          <td><a asp-controller="Carrinho" asp-action="Remover" asp-route-id="@grupo.First().Id" class="btn btn-danger btn-sm">Remover</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="text-center mt-4">
+    <p class="fw-bold fs-4">Total: R$ <span id="totalValor">@Model.Sum(item => item.Preco)</span></p>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <button id="finalizarCompra" class="btn btn-primary rounded-pill">Finalizar Pedido</button>
+
+      <div id="confirmarCompraModal" class="modal" style="display:none;"> 
+        <div class="modal-content"> 
+          <p>Deseja realmente finalizar a compra?</p> 
+          <div class="modal-links"> 
+            <a asp-controller="Pedidos" asp-action="Create" id="confirmarFinalizacao" class="btn btn-primary rounded-pill">Sim</a> 
+            <a id="fecharModalCompra" class="btn btn-danger rounded-pill">Não</a> 
+          </div> 
+        </div> 
+      </div>
+
+      <button id="cancelarPedido" class="btn btn-danger rounded-pill">Cancelar Pedido</button>
+
+      <div id="confirmModal" class="modal" style="display:none;"> 
+        <div class="modal-content"> 
+          <p>Tem certeza que deseja cancelar o pedido?</p> 
+          <div class="modal-links"> 
+            <a asp-controller="Carrinho" asp-action="Cancelar" id="confirmarCancelamento" class="btn btn-primary rounded-pill">Sim</a> 
+            <a id="fecharModal" class="btn btn-danger rounded-pill">Não</a> 
+          </div> 
+        </div> 
+      </div>
+    </div>
+  </div> 
+</div>

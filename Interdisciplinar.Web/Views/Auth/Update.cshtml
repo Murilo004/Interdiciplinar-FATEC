@@ -1,0 +1,80 @@
+@model Usuario
+
+@{
+    var tipo = Context.Session.GetString("TipoUsuario");
+    ViewData["Title"] = "Meu Perfil";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-5">
+                    <div class="text-center mb-5">
+                        <div class="mx-auto d-flex align-items-center justify-content-center rounded-circle bg-dark text-white fw-bold fs-2" style="width: 90px; height: 90px;">
+                            @Model.Nome.Substring(0,1).ToUpper()
+                        </div>
+                        <h2 class="mt-3 mb-1">Meu Perfil</h2>
+                        <p class="text-muted">Atualize suas informações</p>
+                    </div>
+
+                    <form method="post" asp-action="Update">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-4">
+                            <label asp-for="Nome" class="form-label fw-semibold">Nome</label>
+                            <input asp-for="Nome"class="form-control rounded-pill py-2 px-3" />
+                            <span asp-validation-for="Nome"class="text-danger"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                            <input asp-for="Email" class="form-control rounded-pill py-2 px-3" />                                 
+                            <span asp-validation-for="Email" class="text-danger"> </span>
+                        </div>
+                        <div class="mb-5">
+                            <label asp-for="Senha" class="form-label fw-semibold">Senha</label>
+                            <input asp-for="Senha" type="password" class="form-control rounded-pill py-2 px-3" placeholder="A senha permanecerá a mesma, se não for alterada"/>
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid mb-4">
+                            <button type="button" class="btn btn-primary rounded-pill" id="abrirModalSalvar">Salvar Alterações</button>
+                        </div>
+                        <div id="modalSalvarAlteracoes" class="modal" style="display:none;">
+                            <div class="modal-content">
+                                <p>Deseja salvar as alterações?</p>
+                                <div class="modal-links">
+                                    <button type="submit" class="btn btn-primary rounded-pill">Sim</button>
+                                    <button type="button" class="btn btn-danger rounded-pill" id="fecharModalSalvar">Não</button>
+                                </div>
+                            </div>
+                        </div>
+                        <a asp-controller="Servicos" asp-action="Servicos" class="btn btn-danger rounded-pill w-100">Cancelar</a>
+                    </form>
+                    <br />
+                    @if (tipo == "Dentista") 
+                    {
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-dark rounded-pill py-2 w-100" id="abrirModalExcluir">Excluir Conta</button>
+                            <div id="modalExcluirConta" class="modal" style="display:none;">
+                                <div class="modal-content">
+                                    <h4 class="mb-3 text-danger">Excluir Conta</h4>
+                                    <p class="text-muted mb-4">
+                                        Tem certeza que deseja excluir sua conta? 
+                                        <br />
+                                        Esta ação não poderá ser desfeita.
+                                    </p>
+                                    <div class="modal-links">
+                                        <form asp-controller="Auth" asp-action="DeleteConfirmed" method="post">
+                                            <input type="hidden" name="id" asp-for="@Model.Id" />
+                                            <button type="submit" class="btn btn-danger rounded-pill px-4">Excluir</button>
+                                        </form>
+                                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" id="fecharModalExcluir">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

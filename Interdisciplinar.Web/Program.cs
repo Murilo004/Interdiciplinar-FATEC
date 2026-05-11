@@ -1,0 +1,34 @@
+using Microsoft.EntityFrameworkCore;
+using Interdisciplinar.Web.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("BancoDadosMemoria"));
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Auth/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseSession();
+
+app.UseAuthorization();
+
+app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Auth}/{action=Login}/{id?}")
+    .WithStaticAssets();
+
+
+app.Run();

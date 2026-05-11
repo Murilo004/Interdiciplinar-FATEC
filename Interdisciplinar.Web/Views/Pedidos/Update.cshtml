@@ -1,0 +1,27 @@
+@model Pedido
+
+@{
+    ViewData["Title"] = "Editar Pedido - MKMG";
+}
+
+<div class="container py-4" style="max-width:600px;">
+    <h2 class="text-center mb-4">Editar Serviço</h2>
+
+    <form method="post" asp-controller="Pedidos" asp-action="Update">
+        <input asp-for="Id" type="hidden" />
+
+        <div class="mb-3">
+            <label class="form-label">Função</label>
+            <select asp-for="Status" class="form-select" required>
+                <option>Pendente</option>
+                <option>Em Produção</option>
+                <option>Concluído</option>
+            </select>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary rounded-pill">Atualizar Pedido</button>
+            <a asp-controller="Pedidos" asp-action="Pedidos" class="btn btn-danger rounded-pill">Cancelar</a>
+        </div>
+    </form>
+</div>
