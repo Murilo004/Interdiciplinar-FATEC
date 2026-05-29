@@ -1,0 +1,73 @@
+## .gitignore — Lab_Protese (ASP.NET Core / .NET 10)
+
+# ──────────────────────────────
+# Build outputs
+# ──────────────────────────────
+[Bb]in/
+[Oo]bj/
+
+# ──────────────────────────────
+# Visual Studio / Rider
+# ──────────────────────────────
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.idea/
+*.DotSettings.user
+
+# ──────────────────────────────
+# Segredos e configurações locais
+# ──────────────────────────────
+appsettings.Development.json
+appsettings.*.json
+!appsettings.json
+secrets.json
+*.pfx
+*.p12
+
+# ──────────────────────────────
+# Entity Framework Core
+# ──────────────────────────────
+# Não versionar migrations geradas automaticamente (opcional)
+# Migrations/
+
+# ──────────────────────────────
+# NuGet
+# ──────────────────────────────
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# ──────────────────────────────
+# Publicação / deploy
+# ──────────────────────────────
+publish/
+[Pp]ublish/
+[Rr]elease/
+
+# ──────────────────────────────
+# Logs e temporários
+# ──────────────────────────────
+*.log
+*.tmp
+*.temp
+Logs/
+logs/
+
+# ──────────────────────────────
+# Sistema operacional
+# ──────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ──────────────────────────────
+# Variáveis de ambiente
+# ──────────────────────────────
+.env
+.env.*

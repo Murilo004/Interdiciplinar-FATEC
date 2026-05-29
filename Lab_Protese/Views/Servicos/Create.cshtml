@@ -1,0 +1,32 @@
+@model Servico
+
+@{
+    ViewData["Title"] = "Novo Serviço - MKMG";
+}
+
+<div class="container py-4" style="max-width:600px;">
+    <h2 class="text-center mb-4">Cadastrar Serviço</h2>
+
+    <form method="post" asp-controller="Servicos" asp-action="Create">
+
+        <div class="mb-3">
+            <label class="form-label">Serviço</label>
+            <input asp-for="Nome" class="form-control" placeholder="Digite a descrição do serviço" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <input asp-for="Descricao" class="form-control" placeholder="Digite a descrição do serviço" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input asp-for="Valor" type="number" class="form-control" placeholder="Digite o status do serviço" required />
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary rounded-pill">Salvar Serviço</button>
+            <a asp-controller="Servicos" asp-action="Servicos" class="btn btn-danger rounded-pill">Cancelar</a>
+        </div>
+    </form>
+</div>
