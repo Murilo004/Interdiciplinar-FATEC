@@ -9,6 +9,6 @@ namespace Interdisciplinar.Models
         public string Rua { get; set; }
         public int Numero { get; set; }
         public Pessoa Pessoa { get; set; }
-        public Pessoa PessoaId { get; set; }
+        public int PessoaId { get; set; }
     }
 }

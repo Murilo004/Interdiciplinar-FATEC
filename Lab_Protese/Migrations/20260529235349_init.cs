@@ -6,33 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Lab_Protese.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Dentistas",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Cro = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Dentistas", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Entregadores",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -42,27 +26,28 @@ namespace Lab_Protese.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Proteticos",
+                name: "Pessoas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Proteticos", x => x.Id);
+                    table.PrimaryKey("PK_Pessoas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Servicos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -73,15 +58,53 @@ namespace Lab_Protese.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Dentistas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Cro = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dentistas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dentistas_Pessoas_Id",
+                        column: x => x.Id,
+                        principalTable: "Pessoas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Proteticos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Proteticos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Proteticos_Pessoas_Id",
+                        column: x => x.Id,
+                        principalTable: "Pessoas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pedidos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Data = table.Column<DateOnly>(type: "date", nullable: false),
                     ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DentistaId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProteticoId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    DentistaId = table.Column<int>(type: "int", nullable: true),
+                    ProteticoId = table.Column<int>(type: "int", nullable: true),
+                    EnderecoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,8 +113,7 @@ namespace Lab_Protese.Migrations
                         name: "FK_Pedidos_Dentistas_DentistaId",
                         column: x => x.DentistaId,
                         principalTable: "Dentistas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pedidos_Proteticos_ProteticoId",
                         column: x => x.ProteticoId,
@@ -103,11 +125,12 @@ namespace Lab_Protese.Migrations
                 name: "Coletas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateOnly>(type: "date", nullable: false),
                     Hora = table.Column<TimeOnly>(type: "time", nullable: false),
-                    EntregadorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PedidoId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    EntregadorId = table.Column<int>(type: "int", nullable: false),
+                    PedidoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -130,11 +153,12 @@ namespace Lab_Protese.Migrations
                 name: "Entregas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateOnly>(type: "date", nullable: false),
                     Hora = table.Column<TimeOnly>(type: "time", nullable: false),
-                    EntregadorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PedidoId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    EntregadorId = table.Column<int>(type: "int", nullable: false),
+                    PedidoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,8 +181,8 @@ namespace Lab_Protese.Migrations
                 name: "ItensPedido",
                 columns: table => new
                 {
-                    PedidoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ServicoId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PedidoId = table.Column<int>(type: "int", nullable: false),
+                    ServicoId = table.Column<int>(type: "int", nullable: false),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
                     ValorUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -243,6 +267,9 @@ namespace Lab_Protese.Migrations
 
             migrationBuilder.DropTable(
                 name: "Proteticos");
+
+            migrationBuilder.DropTable(
+                name: "Pessoas");
         }
     }
 }

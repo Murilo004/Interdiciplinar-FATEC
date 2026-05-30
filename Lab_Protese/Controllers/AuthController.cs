@@ -185,7 +185,7 @@ namespace Interdisciplinar.Controllers
             return RedirectToAction("Update");
         }
 
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             string tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
 
@@ -211,7 +211,7 @@ namespace Interdisciplinar.Controllers
             return View(protetico);
         }
         [HttpPost]
-        public IActionResult DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(int id)
         {
             string tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
 

@@ -10,9 +10,9 @@ namespace Interdisciplinar.Models
         public ICollection<ItemPedido> Itens { get; set; } = new List<ItemPedido>();
         public int ?DentistaId { get; set; }
         public Dentista Dentista { get; set; }
-        public int ProteticoId { get; set; }
+        public int ?ProteticoId { get; set; }
         public Protetico Protetico { get; set; }
-        public Endereco EnderecoId { get; set; }
+        public int ?EnderecoId { get; set; }
         public Entrega Entrega { get; set; }
         public Coleta Coleta { get; set; }
     }

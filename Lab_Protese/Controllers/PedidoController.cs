@@ -47,6 +47,7 @@ public class PedidosController : Controller
         pedido.ValorTotal = pedido.Itens.Sum(i => i.Quantidade * i.ValorUnitario);
 
         _context.Pedidos.Add(pedido);
+        Console.WriteLine($"ProteticoId: {pedido.ProteticoId}");
 
         _context.SaveChanges();
 

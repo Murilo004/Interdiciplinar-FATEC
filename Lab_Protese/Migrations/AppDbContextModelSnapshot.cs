@@ -24,22 +24,23 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.Coleta", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("Data")
                         .HasColumnType("date");
 
-                    b.Property<string>("EntregadorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("EntregadorId")
+                        .HasColumnType("int");
 
                     b.Property<TimeOnly>("Hora")
                         .HasColumnType("time");
 
-                    b.Property<string>("PedidoId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -51,58 +52,25 @@ namespace Lab_Protese.Migrations
                     b.ToTable("Coletas");
                 });
 
-            modelBuilder.Entity("Interdisciplinar.Models.Dentista", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Cro")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dentistas");
-                });
-
             modelBuilder.Entity("Interdisciplinar.Models.Entrega", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("Data")
                         .HasColumnType("date");
 
-                    b.Property<string>("EntregadorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("EntregadorId")
+                        .HasColumnType("int");
 
                     b.Property<TimeOnly>("Hora")
                         .HasColumnType("time");
 
-                    b.Property<string>("PedidoId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -116,8 +84,11 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.Entregador", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -134,11 +105,11 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.ItemPedido", b =>
                 {
-                    b.Property<string>("PedidoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ServicoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ServicoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
@@ -155,18 +126,23 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.Pedido", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("Data")
                         .HasColumnType("date");
 
-                    b.Property<string>("DentistaId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("DentistaId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ProteticoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("EnderecoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProteticoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -183,21 +159,19 @@ namespace Lab_Protese.Migrations
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("Interdisciplinar.Models.Protetico", b =>
+            modelBuilder.Entity("Interdisciplinar.Models.Pessoa", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("Cnpj")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Endereco")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
@@ -209,18 +183,22 @@ namespace Lab_Protese.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Proteticos");
+                    b.ToTable("Pessoas", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Interdisciplinar.Models.Servico", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -236,6 +214,28 @@ namespace Lab_Protese.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Servicos");
+                });
+
+            modelBuilder.Entity("Interdisciplinar.Models.Dentista", b =>
+                {
+                    b.HasBaseType("Interdisciplinar.Models.Pessoa");
+
+                    b.Property<string>("Cro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Dentistas", (string)null);
+                });
+
+            modelBuilder.Entity("Interdisciplinar.Models.Protetico", b =>
+                {
+                    b.HasBaseType("Interdisciplinar.Models.Pessoa");
+
+                    b.Property<string>("Cnpj")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Proteticos", (string)null);
                 });
 
             modelBuilder.Entity("Interdisciplinar.Models.Coleta", b =>
@@ -299,9 +299,7 @@ namespace Lab_Protese.Migrations
                 {
                     b.HasOne("Interdisciplinar.Models.Dentista", "Dentista")
                         .WithMany("Pedidos")
-                        .HasForeignKey("DentistaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DentistaId");
 
                     b.HasOne("Interdisciplinar.Models.Protetico", "Protetico")
                         .WithMany("Pedidos")
@@ -314,7 +312,20 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.Dentista", b =>
                 {
-                    b.Navigation("Pedidos");
+                    b.HasOne("Interdisciplinar.Models.Pessoa", null)
+                        .WithOne()
+                        .HasForeignKey("Interdisciplinar.Models.Dentista", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Interdisciplinar.Models.Protetico", b =>
+                {
+                    b.HasOne("Interdisciplinar.Models.Pessoa", null)
+                        .WithOne()
+                        .HasForeignKey("Interdisciplinar.Models.Protetico", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Interdisciplinar.Models.Entregador", b =>
@@ -326,21 +337,28 @@ namespace Lab_Protese.Migrations
 
             modelBuilder.Entity("Interdisciplinar.Models.Pedido", b =>
                 {
-                    b.Navigation("Coleta");
+                    b.Navigation("Coleta")
+                        .IsRequired();
 
-                    b.Navigation("Entrega");
+                    b.Navigation("Entrega")
+                        .IsRequired();
 
                     b.Navigation("Itens");
-                });
-
-            modelBuilder.Entity("Interdisciplinar.Models.Protetico", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("Interdisciplinar.Models.Servico", b =>
                 {
                     b.Navigation("ItensPedido");
+                });
+
+            modelBuilder.Entity("Interdisciplinar.Models.Dentista", b =>
+                {
+                    b.Navigation("Pedidos");
+                });
+
+            modelBuilder.Entity("Interdisciplinar.Models.Protetico", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }
