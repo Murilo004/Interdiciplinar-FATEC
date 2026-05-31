@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab_Protese.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260529235349_init")]
+    [Migration("20260530140612_init")]
     partial class init
     {
         /// <inheritdoc />

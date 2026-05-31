@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lab_Protese")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00b97d466485144b40930ba0dc2f5596205d277e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfd00c5d3177cc85c7ea057e9386a0f3ce8a13cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lab_Protese")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lab_Protese")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
