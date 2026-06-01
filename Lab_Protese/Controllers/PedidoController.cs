@@ -35,7 +35,6 @@ public class PedidosController : Controller
             Status = StatusPedido.Pendente
         };
 
-        // BUG 2 (mantido): Salvar antes de criar os itens para gerar o Id
         _context.Pedidos.Add(pedido);
         _context.SaveChanges();
 
@@ -70,7 +69,6 @@ public class PedidosController : Controller
             .Include(p => p.Protetico)
             .Include(p => p.Itens).ThenInclude(i => i.Servico);
 
-        // BUG 3 (mantido): Filtrar por usuário logado
         if (tipoUsuario == "Dentista")
             query = query.Where(p => p.DentistaId == idUsuario);
 
@@ -81,7 +79,6 @@ public class PedidosController : Controller
     {
         if (!IsLogado()) return RedirectToAction("Login", "Auth");
 
-        // BUG 21 CORRIGIDO: Apenas Protéticos devem poder alterar o status do pedido
         if (HttpContext.Session.GetString("TipoUsuario") != "Protetico")
             return Forbid();
 
@@ -112,7 +109,6 @@ public class PedidosController : Controller
     {
         if (!IsLogado()) return RedirectToAction("Login", "Auth");
 
-        // BUG 5 (mantido): Remover itens antes do pedido
         var pedido = _context.Pedidos
             .Include(p => p.Itens)
             .FirstOrDefault(x => x.Id == id);

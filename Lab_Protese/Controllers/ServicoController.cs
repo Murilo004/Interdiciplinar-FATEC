@@ -11,8 +11,6 @@ public class ServicosController : Controller
         _context = context;
     }
 
-    // BUG 19 CORRIGIDO: Qualquer usuário (inclusive Dentista) podia acessar Create/Update/Delete de serviços.
-    // Apenas Protéticos devem poder gerenciar serviços.
     private bool IsProtetico() =>
         HttpContext.Session.GetString("TipoUsuario") == "Protetico";
 

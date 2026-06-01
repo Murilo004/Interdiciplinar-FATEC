@@ -22,8 +22,7 @@ namespace Interdisciplinar.Controllers
         [HttpPost]
         public IActionResult Cadastro(CadastroViewModel model)
         {
-            // BUG 14 CORRIGIDO: CRO obrigatório para Dentista e CNPJ para Protético
-            // precisam ser validados no servidor (não só escondidos via JS)
+            
             if (model.TipoUsuario == "Dentista" && string.IsNullOrWhiteSpace(model.Cro))
             {
                 ModelState.AddModelError("Cro", "O CRO é obrigatório para Dentistas.");
@@ -38,7 +37,6 @@ namespace Interdisciplinar.Controllers
                 return View(model);
             }
 
-            // BUG 6 (mantido): Verificar e-mail duplicado
             bool emailExiste = _context.Dentistas.Any(x => x.Email == model.Email)
                             || _context.Proteticos.Any(x => x.Email == model.Email);
 
@@ -86,7 +84,6 @@ namespace Interdisciplinar.Controllers
 
         public IActionResult Login()
         {
-            // BUG 15 CORRIGIDO: Usuário já logado acessando /Login ficava na página de login
             if (HttpContext.Session.GetInt32("IdUsuario") != null)
             {
                 return RedirectToAction("Servicos", "Servicos");
@@ -130,7 +127,6 @@ namespace Interdisciplinar.Controllers
             return View(model);
         }
 
-        // BUG 16 CORRIGIDO: Actions sensíveis sem proteção de sessão — criado filtro auxiliar
         public IActionResult Update()
         {
             int? idUsuario = HttpContext.Session.GetInt32("IdUsuario");
@@ -160,9 +156,6 @@ namespace Interdisciplinar.Controllers
             if (tipoUsuario == null || idSessao == null)
                 return RedirectToAction("Login");
 
-            // BUG 17 CORRIGIDO: O Id vinha do formulário (campo hidden), permitindo
-            // que um usuário alterasse dados de outro passando id diferente na requisição.
-            // A correção usa o id da sessão como fonte de verdade.
             pessoa.Id = idSessao.Value;
 
             if (tipoUsuario == "Dentista")
@@ -220,8 +213,6 @@ namespace Interdisciplinar.Controllers
             string? tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
             int? idSessao = HttpContext.Session.GetInt32("IdUsuario");
 
-            // BUG 18 CORRIGIDO: Qualquer usuário logado podia deletar qualquer conta
-            // passando um id diferente. A correção força o id da sessão.
             if (idSessao == null || tipoUsuario == null)
                 return RedirectToAction("Login");
 

@@ -10,9 +10,7 @@ public class CarrinhoController : Controller
     {
         _context = context;
     }
-
-    // BUG 20 CORRIGIDO: Protético também podia adicionar ao carrinho e finalizar pedido.
-    // Carrinho é exclusivo de Dentistas.
+    
     private bool IsDentista() =>
         HttpContext.Session.GetString("TipoUsuario") == "Dentista";
 
