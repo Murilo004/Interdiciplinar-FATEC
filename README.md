@@ -1,29 +1,34 @@
 # 🦷 Laboratório de Prótese
 
-Sistema web desenvolvido como Projeto Interdisciplinar da FATEC Rio Preto, durante o 4º semestre, com o objetivo de auxiliar o gerenciamento de um laboratório de prótese dentária, permitindo o controle de usuários, serviços e pedidos em uma única aplicação.
+Sistema web de gestão para laboratórios de prótese dentária, desenvolvido como Projeto Interdisciplinar da FATEC Rio Preto (4º semestre). A aplicação permite o controle de usuários, dentistas, protéticos, serviços e pedidos em um único fluxo, com cálculo automático de valores e acompanhamento de status.
+
+| Login | Cadastro |
+|:---:|:---:|
+| ![Login](images/login.png) | ![Cadastro](images/cadastro.png) |
+
+| Serviços | Pedidos |
+|:---:|:---:|
+| ![Login](images/servicos.png) | ![Pedidos](images/pedidos.png) |
 
 ---
 
 ## Tecnologias utilizadas
 
-- C#
+- C# / .NET 10
 - ASP.NET Core MVC
 - Entity Framework Core
 - SQL Server
-- HTML5
-- CSS3
-- Bootstrap
+- HTML5, CSS3, Bootstrap
 - Git e GitHub
 
 ---
 
 ## Funcionalidades
 
-- Cadastro de usuários
-- Cadastro de dentistas
-- Cadastro de protéticos
-- Cadastro de serviços
-- Gerenciamento de pedidos
+- Cadastro e autenticação de usuários
+- Cadastro de dentistas e protéticos
+- Cadastro e gerenciamento de serviços
+- Criação e acompanhamento de pedidos (com carrinho)
 - Controle de status dos pedidos
 - Cálculo automático do valor total dos pedidos
 
@@ -46,37 +51,58 @@ wwwroot/
 
 ## Como executar
 
+### Pré-requisitos
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- SQL Server (LocalDB, Express ou completo)
+- Visual Studio 2022+ (ou VS Code com extensão C#)
+
+### Passo a passo
+
 1. Clone o repositório
 
 ```bash
- git clone https://github.com/Murilo004/Interdiciplinar-FATEC.git
+git clone https://github.com/Murilo004/Interdiciplinar-FATEC.git
 ```
 
-2. Abra a solução no Visual Studio.
+2. Configure a connection string em `appsettings.json` (ou `appsettings.Development.json`) apontando para sua instância do SQL Server:
 
-3. Restaure as dependências do projeto.
-
-4. Atualize o banco de dados.
-
-```powershell
-Update-Database
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=SEU_SERVIDOR;Database=LabProtese;Trusted_Connection=True;TrustServerCertificate=True;"
+}
 ```
 
-5. Execute a aplicação.
+3. Restaure as dependências
+
+```bash
+dotnet restore
+```
+
+4. Aplique as migrações para criar o banco de dados
+
+```bash
+dotnet ef database update
+```
+
+5. Execute a aplicação
+
+```bash
+dotnet run
+```
 
 ---
 
 ## Aprendizados
 
-Durante o desenvolvimento deste projeto foi possível aplicar na prática conceitos de:
+Durante o desenvolvimento deste projeto foi possível aplicar na prática:
 
-- Programação Orientada a Objetos
-- Arquitetura MVC
-- Entity Framework Core
-- CRUD completo
-- Relacionamento entre entidades
-- Regras de negócio
-- Versionamento com Git
+- Arquitetura MVC e Programação Orientada a Objetos
+- Modelagem de entidades e relacionamento entre elas no EF Core (incluindo herança TPT)
+- CRUD completo com regras de negócio (cálculo de pedidos, controle de status)
+- Autenticação e controle de acesso por perfil de usuário
+- Correção de vulnerabilidades de segurança (ex: IDOR) e validações de dados
+- Versionamento colaborativo com Git e GitHub
 
 ---
 
