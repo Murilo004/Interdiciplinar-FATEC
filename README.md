@@ -62,7 +62,7 @@ wwwroot/
 1. Clone o repositório
 
 ```bash
-git clone https://github.com/Murilo004/Interdiciplinar-FATEC.git
+git clone https://github.com/Murilo004/lab-protese.git
 ```
 
 2. Configure a connection string em `appsettings.json` (ou `appsettings.Development.json`) apontando para sua instância do SQL Server:
