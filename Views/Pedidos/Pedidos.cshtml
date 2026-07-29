@@ -1,5 +1,5 @@
 @model List<Pedido>
-@model Pedido
+
 @{
   ViewData["Title"] = "Pedidos - MKMG";
   var tipo = Context.Session.GetString("TipoUsuario");
@@ -60,18 +60,18 @@
           {
             <td>
               <form method="post" asp-controller="Pedidos" asp-action="Update">
-                <input asp-for="Id" type="hidden" />
+                 <input type="hidden" name="Id" value="@pedido.Id" />
 
-                <div class="mb-3">
-                  <label class="form-label">Função</label>
-                  <select asp-for="Status" class="form-select" required>
-                    <option value="Pendente">Pendente</option>
-                    <option value="Recolhido">Recolhido</option>                    
-                    <option value="EmProducao">Em Produção</option>
-                    <option value="Concluido">Concluido</option>
-                    <option value="Entregue">Entregue</option>
-                  </select>
-                </div>
+                  <div class="mb-3">
+                    <label class="form-label">Função</label>
+                    <select name="Status" class="form-select" required>
+                      <option value="Pendente">Pendente</option>
+                      <option value="Recolhido">Recolhido</option>
+                      <option value="EmProducao">Em Produção</option>
+                      <option value="Concluido">Concluido</option>
+                      <option value="Entregue">Entregue</option>
+                    </select>
+                  </div>
 
                 <div class="d-grid gap-2">
                   <button type="submit" class="btn btn-primary rounded-pill">Atualizar Pedido</button>
