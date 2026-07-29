@@ -2302,11 +2302,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\muril\\Downloads\\Interdiciplinar-FATEC-main\\Interdiciplinar-FATEC-main\\Lab_Protese\\Lab_Protese.csproj",
+      "projectUniqueName": "C:\\Users\\muril\\Desktop\\Interdiciplinar-FATEC\\Lab_Protese.csproj",
       "projectName": "Lab_Protese",
-      "projectPath": "C:\\Users\\muril\\Downloads\\Interdiciplinar-FATEC-main\\Interdiciplinar-FATEC-main\\Lab_Protese\\Lab_Protese.csproj",
+      "projectPath": "C:\\Users\\muril\\Desktop\\Interdiciplinar-FATEC\\Lab_Protese.csproj",
       "packagesPath": "C:\\Users\\muril\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\muril\\Downloads\\Interdiciplinar-FATEC-main\\Interdiciplinar-FATEC-main\\Lab_Protese\\obj\\",
+      "outputPath": "C:\\Users\\muril\\Desktop\\Interdiciplinar-FATEC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\muril\\AppData\\Roaming\\NuGet\\NuGet.Config"

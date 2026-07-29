@@ -1,0 +1,33 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Publish
+publish/
+
+# Testes
+TestResults/
+
+# NuGet
+*.nupkg
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
