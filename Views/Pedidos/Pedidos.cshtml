@@ -32,7 +32,6 @@
         <th>Total</th>
         @if (tipo == "Protetico")
         {
-          <th style="text-align: center">Status</th>
           <th style="text-align: center">Ação</th>
         }
       </tr>
@@ -58,26 +57,6 @@
           <td>R$ @pedido.ValorTotal.ToString("F2")</td>
           @if (tipo == "Protetico")
           {
-            <td>
-              <form method="post" asp-controller="Pedidos" asp-action="Update">
-                <input type="hidden" name="Id" value="@pedido.Id" />
-                <div class="mb-3">
-                  <label class="form-label">Função</label>
-                  <select name="Status" class="form-select" required>
-                    <option value="Pendente">Pendente</option>
-                    <option value="Recolhido">Recolhido</option>
-                    <option value="EmProducao">Em Produção</option>
-                    <option value="Concluido">Concluido</option>
-                    <option value="Entregue">Entregue</option>
-                  </select>
-                </div>
-
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary rounded-pill">Atualizar Pedido</button>
-                  <a asp-controller="Pedidos" asp-action="Pedidos" class="btn btn-danger rounded-pill">Cancelar</a>
-                </div>
-              </form>
-            </td>
             <td style="text-align: center;">
               <a asp-controller="Pedidos" asp-action="Update" asp-route-id="@pedido.Id"
                  class="btn btn-outline-secondary rounded-pill">Editar</a>
