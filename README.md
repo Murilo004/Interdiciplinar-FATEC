@@ -1,6 +1,6 @@
 # 🦷 Laboratório de Prótese
 
-Sistema web desenvolvido como Projeto Interdisciplinar da FATEC com o objetivo de auxiliar o gerenciamento de um laboratório de prótese dentária, permitindo o controle de usuários, serviços e pedidos em uma única aplicação.
+Sistema web desenvolvido como Projeto Interdisciplinar da FATEC Rio Preto, durante o 4º semestre, com o objetivo de auxiliar o gerenciamento de um laboratório de prótese dentária, permitindo o controle de usuários, serviços e pedidos em uma única aplicação.
 
 ---
 
