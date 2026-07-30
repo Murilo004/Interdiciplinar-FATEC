@@ -8,7 +8,7 @@ Sistema web de gestão para laboratórios de prótese dentária, desenvolvido co
 
 | Serviços | Pedidos |
 |:---:|:---:|
-| ![Login](images/servicos.png) | ![Pedidos](images/pedidos.png) |
+| ![Serviços](images/servicos.png) | ![Pedidos](images/pedidos.png) |
 
 ---
 
@@ -110,5 +110,6 @@ Durante o desenvolvimento deste projeto foi possível aplicar na prática:
 
 - Murilo Sonsin Ralio — [Murilo Rálio](https://github.com/Murilo004)
 - Gabriel Henrique Gonçalves Vicente — [Gabriel Vicente](https://github.com/gabrielvicente3425-droid)
+- Christian Gabriel Alves Avelino
 
 Projeto desenvolvido para a disciplina de Projeto Interdisciplinar da FATEC.
